@@ -1,18 +1,49 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/***
+ * Class Main
+ *
+ * Contains the information of the graphic part
+ * @author RACHEL
+ * @version 1.0
+ *
+ */
+
 public class Main extends Application {
+    //Attributes
+    /***
+     * Area where the conversation will be displayed
+     */
+    private TextArea chat_messages = new TextArea();
+
+    /**
+     *Display TextField, chat_messages, window measurements
+     * @return root that is specification for the window
+     *
+     */
+    private Parent createContent(){
+        chat_messages.setPrefHeight(550);
+        TextField input = new TextField();
+
+        VBox root = new VBox(20,chat_messages, input);
+        root.setPrefSize(600,600);
+        return root;
+
+    }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Chat RJ");
+        primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
     }
 
