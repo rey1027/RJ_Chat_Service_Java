@@ -1,4 +1,4 @@
-package TareaChat;
+package tec.tarea.chat;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

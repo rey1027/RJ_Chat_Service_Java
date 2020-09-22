@@ -1,30 +1,27 @@
-package TareaChat;
+package tec.tarea.chat;
 
 import java.io.Serializable;
 import java.util.function.Consumer;
 
-public class Client extends Connection_SC {
+public class Server extends Connection_SC {
     /**
-     * Define variable ip as String and port as Integer
+     * Variable port as integer
      */
-    private String ip;
     private int port;
 
     /**
-     * Client method receives the ip and port that is in the parent class
-     * @param ip ip direction for the server
+     * Server method receives the port that is in the parent class
      * @param port port for communication
      * @param onReceiveCallback data behavior
      */
-    public Client(String ip , int port, Consumer<Serializable> onReceiveCallback) {
+    public Server(int port, Consumer<Serializable> onReceiveCallback) {
         super(onReceiveCallback);
-        this.ip = ip;
         this.port = port;
     }
 
     @Override
     protected boolean isServer() {
-        return false;
+        return true;
     }
 
     @Override
@@ -34,6 +31,6 @@ public class Client extends Connection_SC {
 
     @Override
     protected int getPort() {
-        return port;
+        return port ;
     }
 }

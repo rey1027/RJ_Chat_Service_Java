@@ -1,4 +1,4 @@
-package TareaChat;
+package tec.tarea.chat;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
