@@ -79,7 +79,9 @@ public class Chat_RJ extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Chat RJ");
+        String title_window;
+        title_window = isServer ? "Chat RJ Server" : "Chat RJ Client";
+        primaryStage.setTitle(title_window);
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
     }
