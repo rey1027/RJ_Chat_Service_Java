@@ -11,10 +11,11 @@ import javafx.stage.Stage;
 /***
  * Class Chat_RJ
  *
- * Contains the information of the graphic part
+ * Contains the information of the graphic part, create the server and client
  * @author RACHEL
  * @version 1.0
  *
+ * ""----the message is sent with the enter key---""
  */
 
 public class Chat_RJ extends Application {
@@ -87,6 +88,7 @@ public class Chat_RJ extends Application {
     }
 
     @Override
+
     /**
      * Create the window
      */
