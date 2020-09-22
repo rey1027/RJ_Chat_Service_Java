@@ -43,16 +43,14 @@ public class Chat_RJ extends Application {
     private Connection_SC connection = isServer ? createServer() : createClient();
 
     /**
-     *Display TextField, chat_messages, window measurements
+     *Display TextField, chat_messages, window measurements.
+     *The event is created where the communication between the server and the client occurs, printing the message in text area.
      * @return root that is specification for the window
      */
     private Parent createContent(){
 
         chat_messages.setPrefHeight(500);
         TextField input = new TextField();
-        /**
-         *The event is created where the communication between the server and the client occurs, printing the message in text area
-         */
         input.setOnAction( event -> {
             String message = isServer ? "Server: " : "Client: ";
             message += input.getText();
@@ -60,15 +58,10 @@ public class Chat_RJ extends Application {
 
             chat_messages.appendText(message + "\n");
 
-            /**
-             *The method is created to prevent exceptions throughout the send of message
-             */
             try{
                 connection.send(message);
             }
-            /**
-             * where when the exception exists it displays a message that the error in sending the message
-             */
+
             catch (Exception e){
                 chat_messages.appendText("Failed to send" + "\n");
             }
@@ -80,27 +73,17 @@ public class Chat_RJ extends Application {
 
     }
     @Override
-    /**
-     * Init onnection of the Socket
-     */
     public void init() throws Exception{
         connection.startConnection();
     }
 
     @Override
-
-    /**
-     * Create the window
-     */
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Chat RJ");
         primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
     }
     @Override
-    /**
-     * Close Connection of the Socket
-     */
     public void stop() throws Exception{
         connection.closeConnection();
     }
@@ -110,11 +93,7 @@ public class Chat_RJ extends Application {
      * @return communication port to use
      */
     private Server createServer(){
-        return new Server(55555, data -> {
-            Platform.runLater(() -> {
-                chat_messages.appendText(data.toString() + "\n");
-            });
-        });
+        return new Server(55555, data -> Platform.runLater(() -> chat_messages.appendText(data.toString() + "\n")));
     }
 
     /**
@@ -122,11 +101,7 @@ public class Chat_RJ extends Application {
      * @return ip address and communication port
      */
     private Client createClient(){
-        return new Client("127.0.0.1",55555, data -> {
-            Platform.runLater(() -> {
-                chat_messages.appendText(data.toString() + "\n");
-            });
-        });
+        return new Client("127.0.0.1",55555, data -> Platform.runLater(() -> chat_messages.appendText(data.toString() + "\n")));
     }
     public static void main(String[] args) {
         launch(args);

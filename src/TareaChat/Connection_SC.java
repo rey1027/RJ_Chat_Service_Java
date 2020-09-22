@@ -29,7 +29,7 @@ public abstract class Connection_SC {
 
     /**
      *Method for starting the thread
-     * @throws Exception
+     * @throws Exception connection closed
      */
     public void startConnection() throws Exception{
         connThread.start();
@@ -38,7 +38,7 @@ public abstract class Connection_SC {
     /**
      * Method so that together with the thread, the message is sent
      * @param data package with message
-     * @throws Exception
+     * @throws Exception failed send
      */
     public void send(Serializable data) throws Exception{
         connThread.out.writeObject(data);
@@ -46,7 +46,7 @@ public abstract class Connection_SC {
 
     /**
      * Method for closing the connection
-     * @throws Exception
+     * @throws Exception active connection
      */
     public void closeConnection() throws Exception{
         connThread.socket.close();
@@ -71,35 +71,27 @@ public abstract class Connection_SC {
         private Socket socket ;
         private ObjectOutputStream out;
 
+        /**
+         * Run de ServerSocket, sending data through a loop that is active for constant communication until the connection is closed
+         */
         @Override
         public void run() {
-            /**
-             * The method is created to prevent exceptions throughout the execution of the socket
-             * Create a ServerSocket, Socket, out as ObjectOutputStream and in as ObjectInputStream
-             */
             try(ServerSocket server = isServer() ? new ServerSocket(getPort() ) : null;
                 Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort());
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 
-                /**
-                 * Define socket and out
-                 * The data sending protocol is defined, which will be TCP
-                 */
+
                 this.socket = socket;
                 this.out = out;
                 socket.setTcpNoDelay(true);
-                /**
-                 * Loop so that the socket connection remains constant until one of the parts is closed
-                 */
+
                 while(true){
                     Serializable data = (Serializable) in.readObject();
                     onReceiveCallback.accept(data);
                 }
             }
-            /**
-             * where when the exception exists it displays a message that the Connection was closed
-             */
+
             catch (Exception e) {
                 onReceiveCallback.accept("Connection closed");
             }
