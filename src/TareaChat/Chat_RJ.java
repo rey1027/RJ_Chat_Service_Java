@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /***
- * Class Main
+ * Class Chat_RJ
  *
  * Contains the information of the graphic part
  * @author RACHEL
@@ -18,18 +18,28 @@ import javafx.stage.Stage;
 
 public class Chat_RJ extends Application {
     //Attributes
+
+    /**
+     * Boolean value to be able to run the client and the server
+     */
+    private boolean isServer = false;
+
     /***
      * Area where the conversation will be displayed
      */
     private TextArea chat_messages = new TextArea();
 
     /**
+     * Make the connection with the abstract class to create the server and the client
+     */
+    private Connection_SC connection = isServer ? createServer() : createClient();
+
+    /**
      *Display TextField, chat_messages, window measurements
      * @return root that is specification for the window
-     *
      */
     private Parent createContent(){
-        chat_messages.setPrefHeight(550);
+        chat_messages.setPrefHeight(500);
         TextField input = new TextField();
 
         VBox root = new VBox(20,chat_messages, input);
