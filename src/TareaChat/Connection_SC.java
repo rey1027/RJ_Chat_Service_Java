@@ -75,12 +75,17 @@ public abstract class Connection_SC {
         public void run() {
             /**
              * The method is created to prevent exceptions throughout the execution of the socket
+             * Create a ServerSocket, Socket, out as ObjectOutputStream and in as ObjectInputStream
              */
             try(ServerSocket server = isServer() ? new ServerSocket(getPort() ) : null;
                 Socket socket = isServer() ? server.accept() : new Socket(getIP(), getPort());
                 ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 
+                /**
+                 * Define socket and out
+                 * The data sending protocol is defined, which will be TCP
+                 */
                 this.socket = socket;
                 this.out = out;
                 socket.setTcpNoDelay(true);
