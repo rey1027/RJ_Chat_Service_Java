@@ -11,7 +11,7 @@ public class Server extends Connection_SC {
 
     /**
      * Server method receives the port that is in the parent class
-     * @param port port for comunication
+     * @param port port for communication
      * @param onReceiveCallback data behavior
      */
     public Server(int port, Consumer<Serializable> onReceiveCallback) {
