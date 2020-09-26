@@ -41,7 +41,7 @@ public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
      * It must be parallel execution, change the boolean value to be able to open the two windows.
      * First true and then false./
      * true = server/
-     * false = Customer
+     * false = Client
      *
      */
     private boolean isServer = false;
