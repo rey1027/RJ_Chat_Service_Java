@@ -7,6 +7,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.function.Consumer;
 
+/**
+ *
+ * Contains creation and connection of the socket to be executed in the Chat RJ
+ * @author RACHEL_PEREIRA
+ * @version 1.0
+ *
+ */
 public abstract class Connection_SC {
     /**
      * The NetConnectThread thread class is declared to be able to define it in the other methods

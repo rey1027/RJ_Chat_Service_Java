@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"tec.tarea.chat","l":"Chat_RJ"},{"p":"tec.tarea.chat","l":"Client"},{"p":"tec.tarea.chat","l":"Connection_SC"},{"p":"tec.tarea.chat","l":"Connection_SC.NetConnectThread"},{"p":"tec.tarea.chat","l":"Server"}]

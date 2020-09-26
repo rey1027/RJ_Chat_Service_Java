@@ -3,6 +3,14 @@ package tec.tarea.chat;
 import java.io.Serializable;
 import java.util.function.Consumer;
 
+/**
+ *
+ * Contains what is necessary for the creation of the client
+ * @author RACHEL_PEREIRA
+ * @version 1.0
+ *
+ */
+
 public class Client extends Connection_SC {
     /**
      * Define variable ip as String and port as Integer
@@ -22,6 +30,10 @@ public class Client extends Connection_SC {
         this.port = port;
     }
 
+    /**
+     *
+     * @return referring to the client
+     */
     @Override
     protected boolean isServer() {
         return false;
@@ -32,6 +44,10 @@ public class Client extends Connection_SC {
         return null;
     }
 
+    /**
+     *
+     * @return port to use
+     */
     @Override
     protected int getPort() {
         return port;

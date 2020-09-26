@@ -14,23 +14,23 @@ import javafx.stage.Stage;
 import java.util.Scanner;
 
 /***
- * Class Chat_RJ
  *
  * Contains the information of the graphic part, create the server and client
- * @author RACHEL
+ * @author RACHEL_PEREIRA
  * @version 1.0
  *
- * ""----the message is sent with the enter key---""
  */
 
 public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
     //Attributes
+
     /**
-     *
+     *Create a new element of the Scanner class that will allow us to read in the console
      */
     private Scanner read = new Scanner(System.in);
+
     /**
-     *
+     *Variable that contains the value that is obtained in the console
      */
     private int port_console = read.nextInt();
 
@@ -45,8 +45,9 @@ public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
      *
      */
     private boolean isServer = false;
+
     /**
-     *
+     *Label to put text inside the window
      */
     private Label label = new Label("Service Chat RJ");
 
@@ -59,14 +60,17 @@ public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
      * Make the connection with the abstract class to create the server and the client
      */
     private Connection_SC connection = isServer ? createServer() : createClient();
+
     /**
-     *
+     *Button for send messages
      */
     private Button button_Send = new Button("SEND");
+
     /**
-     *
+     *Space to write your message
      */
     private TextField input = new TextField();
+
     /**
      *Display window measurements.
      *The event is created where the communication between the server and the client occurs, printing the message in text area.
@@ -80,17 +84,26 @@ public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
         label.setFont(new Font("Agency FB",25));
         button_Send.setFont(new Font("Cambria",25));
         button_Send.setOnAction(this);
-
-        VBox root = new VBox(20,chat_messages, input,button_Send);
+        VBox root = new VBox(20, label,chat_messages, input, button_Send);
         root.setPrefSize(450,550);
         return root;
 
     }
+
+    /**
+     * Initiates the connection between the server and the client
+     * @throws Exception Closed Connection
+     */
     @Override
     public void init() throws Exception{
         connection.startConnection();
     }
 
+    /**
+     *Initialize the Chat window with the different objects added
+     * @param primaryStage Chat window
+     * @throws Exception ERROR
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         String title_window;
@@ -100,6 +113,11 @@ public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
+    /**
+     *Close the connection between the server and the client
+     * @throws Exception Active connection
+     */
     @Override
     public void stop() throws Exception{
         connection.closeConnection();
@@ -122,8 +140,8 @@ public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
     }
 
     /**
-     *
-     * @param args
+     *Show the actions corresponding to the console
+     * @param args stores values
      */
     public static void main(String[] args) {
         System.out.println("NOTA IMPORTANTE: Primero el isServer en true e ingresar el puerto y luego en false realizando el mismo paso"+"***Mismo Puerto***");
@@ -135,8 +153,8 @@ public class Chat_RJ extends Application implements EventHandler<ActionEvent> {
     }
 
     /**
-     *
-     * @param event
+     *Send message button functionality
+     * @param event send message
      */
     @Override
     public void handle(ActionEvent event) {

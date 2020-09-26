@@ -3,6 +3,13 @@ package tec.tarea.chat;
 import java.io.Serializable;
 import java.util.function.Consumer;
 
+/**
+ *
+ * Contains what is necessary for the creation of the server
+ * @author RACHEL_PEREIRA
+ * @version 1.0
+ *
+ */
 public class Server extends Connection_SC {
     /**
      * Variable port as integer
@@ -19,6 +26,10 @@ public class Server extends Connection_SC {
         this.port = port;
     }
 
+    /**
+     *
+     * @return referring to the server
+     */
     @Override
     protected boolean isServer() {
         return true;
@@ -29,6 +40,10 @@ public class Server extends Connection_SC {
         return null;
     }
 
+    /**
+     *
+     * @return port to use
+     */
     @Override
     protected int getPort() {
         return port ;
